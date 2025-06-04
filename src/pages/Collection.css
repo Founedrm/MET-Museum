@@ -1,0 +1,244 @@
+/* === Container === */
+.collection-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+/* === Breadcrumb === */
+.collection-breadcrumb {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.breadcrumb-link {
+    text-decoration: none;
+    color: #666;
+}
+
+.breadcrumb-link:hover {
+    text-decoration: underline;
+}
+
+.separator {
+    margin: 0 6px;
+    color: #ccc;
+}
+
+/* === Title === */
+.collection-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+/* === Layout === */
+.collection-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+}
+
+/* === Sidebar === */
+.collection-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    border-right: 1px solid #eee;
+    padding-right: 16px;
+}
+
+.hide-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    color: #666;
+}
+
+.filter-section {
+    border-bottom: 1px solid #ddd;
+    padding: 16px 0;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.filter-title {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin: 0;
+    color: #444;
+}
+
+.filter-options {
+    margin-top: 8px;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.filter-input {
+    width: 16px;
+    height: 16px;
+}
+
+.filter-text {
+    font-size: 14px;
+    color: #333;
+}
+
+.show-more {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    text-transform: uppercase;
+}
+
+.filter-select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+/* === Main Content === */
+.collection-main {
+    flex: 1;
+}
+
+.collection-searchbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.collection-searchbar input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.collection-searchbar button {
+    padding: 10px 16px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* === Grid === */
+.collection-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.artwork-card {
+    background-color: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+    position: relative;
+    text-decoration: none; /* Pour effacer le soulignement du <Link> */
+    color: inherit;       /* Pour que le texte garde sa couleur normale */
+}
+
+.artwork-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.artwork-image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 100%;
+    overflow: hidden;
+    background-color: #f9f9f9;
+}
+
+.artwork-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artwork-actions {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    display: flex;
+    gap: 8px;
+}
+
+.action-btn {
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.artwork-info {
+    padding: 12px;
+    text-align: left;
+}
+
+.artwork-price {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.artwork-info h3 {
+    font-size: 1rem;
+    margin: 0 0 4px;
+    color: #222;
+}
+
+.artwork-info p {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 2px 0;
+}

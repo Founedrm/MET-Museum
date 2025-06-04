@@ -1,0 +1,46 @@
+/* src/components/Navbar.css */
+
+/* Reset minimal si besoin (ou relye-toi déjà sur ton Home.css pour les globales) */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e2e2;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Partie gauche (Home) */
+.nav-left {
+    display: flex;
+    gap: 32px;
+}
+
+/* Logo (centré) */
+.logo {
+    font-size: 1.25rem; /* 20px */
+    font-weight: bold;
+    color: #000000;
+}
+
+/* Partie droite (autres liens) */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 0.875rem; /* 14px */
+    font-weight: 500;
+    color: #333333;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #000000;
+}
