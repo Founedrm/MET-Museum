@@ -48,7 +48,7 @@ const Home: React.FC = () => {
                 setHighlights(artworksWithImage.slice(0, 12));
             } catch (err) {
                 console.error(err);
-                setError("Impossible de charger les œuvres en vedette.");
+                setError("Impossible de charger nos incourtounables.");
             } finally {
                 setLoading(false);
             }
@@ -58,9 +58,8 @@ const Home: React.FC = () => {
     }, []);
 
     if (loading) return <p className="loading">Chargement des œuvres...</p>;
-    if (error) return <p className="error">{error}</p>;
+    if (error) return <p className="erreur">{error}</p>;
 
-    // On choisit la première image disponible pour le Hero
     const heroImage = '/hero.jpg';
 
     return (
@@ -78,11 +77,10 @@ const Home: React.FC = () => {
                     <p className="hero-subtitle">
                         Explorez une collection unique d'œuvres issues des plus grandes époques artistiques.
                     </p>
-                    <button className="btn btn-lg hero-button">Voir la Galerie</button>
                 </div>
             </section>
 
-            {/* Œuvres en vedette */}
+            {/* Œuvres incontournables */}
             <section className="highlights section">
                 <h2 className="section-title center">Nos incontournables</h2>
                 <div className="grid">

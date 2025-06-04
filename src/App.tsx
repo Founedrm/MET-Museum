@@ -3,8 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import SearchResults from './pages/SearchResults';
-import AdvancedSearch from './pages/AdvancedSearch';
 import ItemPage from './pages/ItemPage';
 import Collection from './pages/Collection';
 
