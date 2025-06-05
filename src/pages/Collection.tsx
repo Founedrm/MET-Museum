@@ -219,7 +219,7 @@ const Collection: React.FC = () => {
                     <form onSubmit={handleSearch} className="collection-searchbar">
                         <input
                             type="text"
-                            placeholder="Search artworks..."
+                            placeholder="Rechercher une oeuvre"
                             value={query}
                             onChange={e => setQuery(e.target.value)}
                         />
