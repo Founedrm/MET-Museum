@@ -1,7 +1,6 @@
-// src/components/Navbar.tsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css'; // le CSS spécifique à la nav
+import './Navbar.css';
 
 const Navbar: React.FC = () => {
     return (
@@ -14,7 +13,6 @@ const Navbar: React.FC = () => {
 
             <div className="nav-right">
                 <Link to="/collection" className="nav-link">Collection</Link>
-                {/* Ajoute ici tous les liens que tu veux voir partout */}
             </div>
         </header>
     );

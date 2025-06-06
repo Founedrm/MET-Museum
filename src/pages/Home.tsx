@@ -1,4 +1,3 @@
-// Home.tsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { searchObjects, getObjectById } from '../api/metAPI';
@@ -65,7 +64,6 @@ const Home: React.FC = () => {
     return (
         <div className="home-container">
 
-            {/* Hero Section */}
             <section
                 className="hero"
                 style={{ backgroundImage: `url(${heroImage})` }}
@@ -111,7 +109,7 @@ const Home: React.FC = () => {
                         <div className="footer-col">
                             <h3 className="footer-title">Museum</h3>
                             <p className="footer-desc">
-                                Une destination de premier choix pour les amateurs et collectionneurs d'art contemporain du monde entier.
+                                Un outil pensé pour aider les chercheurs et curieux à explorer facilement les trésors des collections du MET.
                             </p>
                         </div>
 

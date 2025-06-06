@@ -1,7 +1,6 @@
-// src/pages/Collection.tsx
 import React, { useEffect, useState } from 'react';
 import { getDepartments, searchObjects, getObjectById } from '../api/metAPI';
-import { ChevronDown, Filter, Heart, Maximize, ShoppingBag } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import './Collection.css';
 
@@ -13,6 +12,16 @@ interface Artwork {
     medium: string;
     objectDate: string;
     tags: string[];
+}
+
+interface MetObjectData {
+    objectID: number;
+    primaryImageSmall: string;
+    title: string;
+    artistDisplayName: string;
+    medium: string;
+    objectDate: string;
+    tags?: { term: string }[];
 }
 
 const Collection: React.FC = () => {
@@ -44,21 +53,22 @@ const Collection: React.FC = () => {
                 const dateSet = new Set<string>();
                 const tagSet = new Set<string>();
 
-                (responses as PromiseFulfilledResult<any>[]).forEach(r => {
-                    if (r.status === 'fulfilled') {
-                        const data = r.value.data;
-                        if (data.objectDate && data.objectDate.trim() !== '') {
-                            dateSet.add(data.objectDate);
+                (responses as PromiseFulfilledResult<{ data: MetObjectData }>[])
+                    .forEach(r => {
+                        if (r.status === 'fulfilled') {
+                            const data = r.value.data;
+                            if (data.objectDate?.trim()) {
+                                dateSet.add(data.objectDate);
+                            }
+                            if (Array.isArray(data.tags)) {
+                                data.tags.forEach((t) => {
+                                    if (t.term && typeof t.term === 'string') {
+                                        tagSet.add(t.term);
+                                    }
+                                });
+                            }
                         }
-                        if (Array.isArray(data.tags)) {
-                            data.tags.forEach((t: any) => {
-                                if (t.term && typeof t.term === 'string') {
-                                    tagSet.add(t.term);
-                                }
-                            });
-                        }
-                    }
-                });
+                    });
 
                 setDates(Array.from(dateSet).sort());
                 setTags(Array.from(tagSet).sort());
@@ -90,7 +100,7 @@ const Collection: React.FC = () => {
         setError(null);
         setResults([]);
         try {
-            const params: any = {};
+            const params: { q?: string; departmentId?: string } = {};
             if (query) params.q = query;
             if (departmentId) params.departmentId = departmentId;
 
@@ -103,8 +113,9 @@ const Collection: React.FC = () => {
 
             const responses = await Promise.allSettled(ids.map(id => getObjectById(id)));
 
-            let artworks: Artwork[] = (responses as PromiseFulfilledResult<any>[]).filter(r => r.status === 'fulfilled' && r.value.data)
-                .map((r: any) => {
+            let artworks: Artwork[] = (responses as PromiseFulfilledResult<{ data: MetObjectData }>[])
+                .filter(r => r.status === 'fulfilled' && r.value.data)
+                .map((r) => {
                     const data = r.value.data;
                     return {
                         objectID: data.objectID,
@@ -113,7 +124,7 @@ const Collection: React.FC = () => {
                         artistDisplayName: data.artistDisplayName,
                         medium: data.medium,
                         objectDate: data.objectDate,
-                        tags: Array.isArray(data.tags) ? data.tags.map((t: any) => t.term) : [],
+                        tags: Array.isArray(data.tags) ? data.tags.map(t => t.term) : [],
                     };
                 });
 
@@ -129,15 +140,15 @@ const Collection: React.FC = () => {
 
             setResults(artworks);
         } catch {
-            setError('Erreur lors de la recherche.');
+            setError('Error during search.');
         } finally {
             setLoading(false);
         }
     };
 
-    const handleSearch = (e: React.FormEvent) => {
+    const handleSearch = async (e: React.FormEvent) => {
         e.preventDefault();
-        fetchResults();
+        await fetchResults();
     };
 
     return (
@@ -148,11 +159,10 @@ const Collection: React.FC = () => {
                 <span>All</span>
             </div>
 
-            <h1 className="collection-title">Résultats pour "{query || 'art'}"</h1>
+            <h1 className="collection-title">Results for "{query || 'art'}"</h1>
 
             <div className="collection-layout">
                 <aside className="collection-sidebar">
-
                     <div className="filter-section">
                         <div className="filter-header">
                             <h3 className="filter-title">DEPARTMENT</h3>
@@ -219,7 +229,7 @@ const Collection: React.FC = () => {
                     <form onSubmit={handleSearch} className="collection-searchbar">
                         <input
                             type="text"
-                            placeholder="Rechercher une oeuvre"
+                            placeholder="Search for an artwork"
                             value={query}
                             onChange={e => setQuery(e.target.value)}
                         />
@@ -243,22 +253,11 @@ const Collection: React.FC = () => {
                                         alt={art.title}
                                         className="artwork-image"
                                     />
-                                    <div className="artwork-actions">
-                                        <button className="action-btn" onClick={e => e.preventDefault()}>
-                                            <Heart className="icon" />
-                                        </button>
-                                        <button className="action-btn" onClick={e => e.preventDefault()}>
-                                            <Maximize className="icon" />
-                                        </button>
-                                        <button className="action-btn" onClick={e => e.preventDefault()}>
-                                            <ShoppingBag className="icon" />
-                                        </button>
-                                    </div>
                                 </div>
                                 <div className="artwork-info">
                                     <span className="artwork-price">€{art.objectID}</span>
                                     <h3>{art.title}</h3>
-                                    <p>{art.artistDisplayName || 'Unknown Artist'}</p>
+                                    <p>{art.artistDisplayName || 'Artiste inconnu'}</p>
                                     <p className="filter-text"><em>Medium:</em> {art.medium}</p>
                                     <p className="filter-text"><em>Date:</em> {art.objectDate}</p>
                                     <p className="filter-text"><em>Tags:</em> {art.tags.join(', ')}</p>
