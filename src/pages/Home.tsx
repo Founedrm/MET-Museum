@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { searchObjects, getObjectById } from '../api/metAPI';
 import './Home.css';
+import RechercheRapide from "./RechercheRapide.tsx";
 
 interface Artwork {
     objectID: number;
@@ -75,6 +76,7 @@ const Home: React.FC = () => {
                     <p className="hero-subtitle">
                         Explorez une collection unique d'œuvres issues des plus grandes époques artistiques.
                     </p>
+                    <RechercheRapide />
                 </div>
             </section>
 
