@@ -1,54 +1,28 @@
-# React + TypeScript + Vite
+# MET Museum API
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Un projet développé avec **Vite + React + TypeScript** pour explorer la collection du Metropolitan Museum of Art (MET) via son API publique.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🖼️ Fonctionnalités principales
 
-## Expanding the ESLint configuration
+- 🔍 **Recherche rapide** : une barre de recherche accessible depuis toutes les pages permet de retrouver rapidement des œuvres à partir de mots-clés simples.
+- 🎯 **Recherche avancée** : une page dédiée offre des filtres précis (départements, dates, tags) pour explorer des œuvres spécifiques.
+- 🌟 **Page d’accueil** : présente les œuvres "Highlights" proposées par le MET.
+- 🖼️ **Page de détail** : chaque œuvre est affichée avec ses informations principales (titre, artiste, période, date, culture, dimensions, etc.).
+- 📱 **Design responsive** : l’interface est pensée pour fonctionner sur tous les formats d’écran (desktop, mobile, tablette).
+- 🎨 **Interface soignée (UI/UX)** : expérience utilisateur fluide, lisible, et esthétique.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## ⚙️ Installation et lancement
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Prérequis
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Node.js 
+- npm 
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+### Étapes à suivre
+
+ - Installe les dépendances: npm install
+ - Lance le serveur de développement: npm run dev
